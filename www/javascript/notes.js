@@ -6,7 +6,7 @@ window.addEventListener("load", async function () {
         notes = await loadNotes();
         renderNotes();
     } catch (error) {
-        if (error instanceof ReferenceError) {
+        if (error.code === "ENOENT") {
             // The file could not be found.
             // Ignore this error and assume no prior notes exist.
             return;
@@ -76,6 +76,7 @@ function loadNotes() {
         fs.readFile(file, "utf-8", (error, data) => {
             if (error) {
                 reject(error);
+                return;
             }
             let notes = JSON.parse(data);
             notes = notes.map(note => new Note(note.text, new Date(note.date)));
