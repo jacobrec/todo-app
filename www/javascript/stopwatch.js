@@ -93,5 +93,5 @@ function setWatch(millis) {
     }else if (millis < 100){
         millis = "0" + millis;
     }
-    document.getElementById("clock").innerHTML = hours+":"+minutes+":"+seconds+"."+millis;
+    document.getElementById("timer").innerHTML = hours+":"+minutes+":"+seconds+"."+millis;
 }

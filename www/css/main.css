@@ -17,7 +17,6 @@ html {
     width: 90vw;
     height: 90vh;
     padding: 5vh 5vw;
-    background-color: var(--colour-a3);
 }
 
 .tile {
@@ -37,13 +36,17 @@ body {
     font-family: "Roboto", sans-serif;
     font-size: 100%;
     overflow: hidden;
+    background-color: var(--colour-a3);
+
 }
 
 ul {
     padding-left: 0;
     list-style: none;
 }
-
+a{
+    text-decoration: none;
+}
 .btn {
     border-radius: 3px;
     color: #ffffff;
@@ -51,10 +54,11 @@ ul {
     padding: 10px 20px 10px 20px;
     border: 0px solid black;
     align-content: center;
+    text-align: center;
 }
 
 .btn:hover {
-    border: 3px solid black;
+    background: #999;
 }
 
 .btn-accent {
@@ -64,10 +68,12 @@ ul {
     padding: 10px 20px 10px 20px;
     border: 0px solid black;
     align-content: center;
+    text-align: center;
+
 }
 
 .btn-accent:hover {
-    border: 3px solid black;
+    background: #999;
 }
 
 /* Side menu and related elements */
@@ -107,4 +113,8 @@ ul {
     position: absolute;
     top: 0;
     left: 0;
+    background-color: var(--colour-a2);
+    border: none;
+    font-size: 2em;
+    color: var(--colour-light);
 }
