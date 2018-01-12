@@ -1,3 +1,5 @@
+/* Variable declarations */
+
 html {
     --colour-nav: #2C3E50;
     --colour-accent: #E74C3C;
@@ -6,13 +8,7 @@ html {
     --colour-a3: #2980B9;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: "Roboto", sans-serif;
-    font-size: 100%;
-    overflow: hidden;
-}
+/* Index page styles */
 
 .tiles {
     display: grid;
@@ -31,6 +27,16 @@ body {
     justify-content: center;
     align-items: center;
     color: var(--colour-light);
+}
+
+/*  Project-wide styles */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    font-size: 100%;
+    overflow: hidden;
 }
 
 ul {
@@ -65,6 +71,7 @@ ul {
 }
 
 /* Side menu and related elements */
+
 .side-menu {
     display: none;
     position: absolute;

@@ -19,7 +19,9 @@ class Note {
         
         // Format the date and time.
         let date = this.date.toString().substring(0, 15);
-        let time = this.date.getHours() + ":" + this.date.getMinutes();
+        let hours = this.date.getHours();
+        let minutes = this.date.getMinutes() < 10 ? "0" + this.date.getMinutes() : this.date.getMinutes();
+        let time = hours + ":" + minutes;
         let dateAndTime = date + " @ " + time;
 
         element.innerHTML = `
