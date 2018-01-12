@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Todo</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="css/main.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
-<div id="notfooter">
-    <nav>Friend, listen here.</nav>
-    <h1>Quick, Enter your Bank info!</h1>
-    <input placeholder="Credit Card goes here"/>
-    <input type="button" value="Submit">
-</div>
-<div id="footer">
-    This is not a scam, trust me.
-</div>
+    <main>
+        <section id="tiles" class="tiles">
+            <a id="notes" class="tile" href="">Notes</a>
+            <a id="todo" class="tile" href="">Todo List</a>
+            <a id="calendar" class="tile" href="">Calendar</a>
+            <a id="timer" class="tile" href="">Clock</a>
+        </section>
+    </main>
 
-
-<script>
-    // You can also require other files to run in this process
-    require('.javascript/renderer.js')
-</script>
+    <script>
+        // You can also require other files to run in this process
+        require('./javascript/renderer.js')
+    </script>
 </body>
+
 </html>
