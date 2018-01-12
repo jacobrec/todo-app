@@ -1,7 +1,7 @@
 let notes = [];
 
 window.addEventListener("load", async function () {
-    document.getElementById("create-note").onclick = createNote;
+    document.getElementById("note-create").onclick = createNote;
     try {
         notes = await loadNotes();
         renderNotes();
@@ -25,6 +25,8 @@ class Note {
         } else {
             this.date = new Date();
         }
+        // Use milliseconds since January 1, 1970 as the id.
+        this.id = this.date.getTime();
     }
 
     getElement() {
@@ -41,7 +43,14 @@ class Note {
         element.innerHTML = `
             <p class="note-text">${this.text}</p>
             <p class="note-date">${dateAndTime}</p>
+            <button class="note-edit btn">
+                <i class="material-icons">edit</i>
+            </button>
+            <button class="note-delete btn">
+                <i class="material-icons">delete</i>
+            </button>
         `;
+        element.querySelector(".note-delete").onclick = () => deleteNote(this.id);
         return element;
     }
 }
@@ -53,6 +62,26 @@ function createNote() {
     notes.push(new Note(text));
     renderNotes();
     saveNotes();
+}
+
+function deleteNote(id) {
+    // Find the note in the notes array.
+    let index = -1;
+    for (let i = 0; i < notes.length; i++) {
+        let note = notes[i];
+        if (note.id === id) {
+            index = i;
+            break;
+        }
+    }
+    // Remove the note.
+    if (index > -1) {
+        notes.splice(index, 1);
+        renderNotes();
+        saveNotes();
+    } else {
+        console.log("Warning: note not found in array.");
+    }
 }
 
 function renderNotes() {
