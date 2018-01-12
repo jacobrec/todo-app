@@ -54,10 +54,8 @@ function watchReset() {
 
 function changeButtons(isReset) {
     if(isReset) {
-        document.getElementById("start-restart").value = "Start";
         document.getElementById("stop-reset").value = "Stop";
     }else{
-        document.getElementById("start-restart").value = "Restart";
         document.getElementById("stop-reset").value = "Reset";
     }
 }

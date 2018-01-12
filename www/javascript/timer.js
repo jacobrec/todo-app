@@ -36,7 +36,15 @@ let startTime;
 let running = false;
 let reset = true;
 function timerStop() {
-    running = false;
+
+    if(!running) {
+        resetClock();
+    }else{
+        running = false;
+        document.getElementById("stop").value = "Reset";
+    }
+
+
 }
 function timerStart() {
     if (!running) {
@@ -67,6 +75,7 @@ function timerStart() {
         startTime = Date.now();
 
         requestAnimationFrame(updateClock);
+        document.getElementById("stop").value = "Stop";
     }
 
 }
@@ -75,6 +84,10 @@ function updateClock() {
     millisRemaining -= (Date.now() - startTime);
     startTime = Date.now();
     if (millisRemaining <= 0) {
+        var audio = new Audio("beep_6x.mp3");
+        audio.currentTime = 0;
+        audio.play();
+
         let myNotification = new Notification('Todo', {
             body: "Your time is up :)"
         });
@@ -90,11 +103,7 @@ function graphicalUpdate(millis) {
     document.getElementById("time-minutes").value = Math.floor(millis / 1000 / 60) % 60;
     document.getElementById("time-hours").value = Math.floor(millis / 1000 / 60 / 60);
 }
-function timerReset() {
-    if(!running) {
-        resetClock();
-    }
-}
+
 function resetClock() {
     document.getElementById("time-hours").value = "";
     document.getElementById("time-minutes").value = "";

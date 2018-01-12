@@ -113,7 +113,7 @@ a{
     position: absolute;
     top: 0;
     left: 0;
-    background-color: var(--colour-a2);
+    background-color: transparent;
     border: none;
     font-size: 2em;
     color: var(--colour-light);
