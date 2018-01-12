@@ -37,16 +37,17 @@ body {
     font-size: 100%;
     overflow: hidden;
     background-color: var(--colour-a3);
-
 }
 
 ul {
     padding-left: 0;
     list-style: none;
 }
-a{
+
+a {
     text-decoration: none;
 }
+
 .btn {
     border-radius: 3px;
     color: #ffffff;
@@ -69,7 +70,6 @@ a{
     border: 0px solid black;
     align-content: center;
     text-align: center;
-
 }
 
 .btn-accent:hover {
@@ -80,20 +80,22 @@ a{
 
 .side-menu {
     display: none;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 300px;
     height: 100vh;
     background-color: var(--colour-nav);
+    z-index: 99;
 }
 
 .menu-item {
     display: block;
     width: 90%;
-    padding: 0 5%;
+    padding: 10px 5%;
     color: var(--colour-light);
     text-decoration: none;
+    border-bottom: 1px solid var(--colour-light);
 }
 
 .menu-selected {
@@ -102,19 +104,18 @@ a{
 
 .menu-close {
     margin: 0;
-    padding: 0 10px;
     text-align: right;
-    font-size: 2rem;
+    font-size: 3rem;
     cursor: pointer;
 }
 
 .menu-open {
     display: block;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     background-color: transparent;
     border: none;
-    font-size: 2em;
+    font-size: 2rem;
     color: var(--colour-light);
 }
