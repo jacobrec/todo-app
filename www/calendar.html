@@ -6,25 +6,66 @@
     <title>Todo</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="css/main.css" type="text/css" rel="stylesheet">
+    <link href="libs/clndr.min.css" type="text/css" rel="stylesheet">
+    <link href="css/cal.css" type="text/css" rel="stylesheet">
+    <script src="libs/moment.min.js"></script>
 </head>
 
 <body>
-    <button id="menu-open" class="menu-open">&#9776;</button>
-    <nav id="side-menu" class="side-menu">
-        <div class="menu-item">
-            <p id="menu-close" class="menu-close">&times;</p>
-        </div>
-        <a class="menu-item" href="notes.html">Notes</a>
-        <a class="menu-item" href="todo-list.html">Todo List</a>
-        <a class="menu-item menu-selected" href="calendar.html">Calendar</a>
-        <a class="menu-item" href="clock.html">Clock</a>
-    </nav>
-    <main>
+<button id="menu-open" class="menu-open">&#9776;</button>
+<nav id="side-menu" class="side-menu">
+    <div class="menu-item">
+        <p id="menu-close" class="menu-close">&times;</p>
+    </div>
+    <a class="menu-item" href="notes.html">Notes</a>
+    <a class="menu-item" href="todo-list.html">Todo List</a>
+    <a class="menu-item menu-selected" href="calendar.html">Calendar</a>
+    <a class="menu-item" href="clock.html">Clock</a>
+</nav>
+<main>
+    <div id="mini-clndr">
+        <script id="mini-clndr-template" type="text/template">
 
-    </main>
-    <script>
-        require("./javascript/menu.js");
-    </script>
+            <div class="controls">
+                <div class="clndr-previous-button">&lsaquo;</div><div class="month"><%= month %></div><div class="clndr-next-button">&rsaquo;</div>
+            </div>
+
+            <div class="days-container">
+                <div class="days">
+                    <div class="headers">
+                        <% _.each(daysOfTheWeek, function(day) { %><div class="day-header"><%= day %></div><% }); %>
+                    </div>
+                    <% _.each(days, function(day) { %><div class="<%= day.classes %>" id="<%= day.id %>"><%= day.day %></div><% }); %>
+                </div>
+                <div class="events">
+                    <div class="headers">
+                        <div class="x-button">x</div>
+                        <div class="event-header">EVENTS</div>
+                    </div>
+                    <div class="events-list">
+                        <% _.each(eventsThisMonth, function(event) { %>
+                        <div class="event">
+                            <a href="<%= event.url %>"><%= moment(event.date).format('MMMM Do') %>: <%= event.title %></a>
+                        </div>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+
+        </script>
+    </div>
+</main>
+<script>
+    require("./javascript/menu.js");
+
+    window.$ = window.jquery = require("jquery");
+    require("./libs/moment.min.js");
+    window._ = require("./libs/underscore-min.js");
+    require("./libs/clndr.min.js");
+    require("./javascript/calender.js");
+
+
+</script>
 </body>
 
 </html>
