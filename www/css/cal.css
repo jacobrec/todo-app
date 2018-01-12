@@ -1,9 +1,4 @@
-#cal {
-    width: 80%;
-    margin-left: 10%;
-    height: 80%;
-    margin-top: 10%;
-}
+
 .noselect {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -11,9 +6,13 @@
 }
 #mini-clndr {
     font-family: Asap, Helvetica, Arial;
+    --cal-width: 700px;
+    --cal-height: 500px;
+    --day-width: 100px;
     margin: 0 auto;
-    width: 294px;
+    width: var(--cal-width);
     box-shadow: 0 0 0 #040404;
+
 }
 #mini-clndr .clndr {
     overflow: hidden;
@@ -51,23 +50,23 @@
 }
 #mini-clndr .clndr .days-container {
     position: relative;
-    width: 294px;
-    height: 213px;
+    width: var(--cal-width);
+    height:var(--cal-height);
 }
 #mini-clndr .clndr .days-container .days {
     position: absolute;
     left: 0;
-    width: 294px;
-    height: 217px;
+    width: var(--cal-width);
+    height: var(--cal-height);
     background-color: #dedede;
 }
 #mini-clndr .clndr .days-container .days .day,
 #mini-clndr .clndr .days-container .days .empty {
-    width: 42px;
+    width: var(--day-width);
     display: inline-block;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    font-size: 12px;
+    padding-top: 25px;
+    padding-bottom: 24px;
+    font-size: 24px;
     text-align: center;
     color: #212121;
     border-right: 1px solid rgba(255,255,255,0.5);
@@ -96,16 +95,16 @@
     padding-bottom: 5px;
 }
 #mini-clndr .clndr .days-container .days .headers .day-header {
-    width: 42px;
+    width: var(--day-width);
     display: inline-block;
     text-align: center;
     color: white;
 }
 #mini-clndr .clndr .days-container .events {
     position: absolute;
-    left: 294px;
-    width: 294px;
-    height: 217px;
+    left: var(--cal-width);
+    width: var(--cal-width);
+    height: var(--cal-height);
     background-color: #dedede;
 }
 #mini-clndr .clndr .days-container .events .headers {
@@ -131,7 +130,7 @@
 }
 #mini-clndr .clndr .days-container .events .events-list {
     overflow: scroll;
-    height: 185px;
+    height: 500px;
 }
 #mini-clndr .clndr .days-container .events .events-list .event {
     padding-top: 8px;
@@ -155,7 +154,7 @@
     color: var(--colour-nav);
 }
 #mini-clndr .clndr .days-container.show-events .days {
-    left: -294px;
+    left: - var(--cal-width);
 }
 #mini-clndr .clndr .days-container.show-events .events {
     left: 0;
