@@ -3,6 +3,13 @@
     display: block;
     width: 300px;
     height: 300px;
+    margin: auto;
+}
+
+.note {
+    background-color: var(--colour-light);
+    padding: 10px;
+    margin: 10px auto;
 }
 
 .note-text {
