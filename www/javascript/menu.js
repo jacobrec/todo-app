@@ -1,3 +1,8 @@
+window.addEventListener("load", function () {
+    document.getElementById("menu-open").onclick = openMenu;
+    document.getElementById("menu-close").onclick = closeMenu;
+});
+
 function openMenu() {
     let menu = document.getElementById("side-menu");
     menu.style.display = "block";
