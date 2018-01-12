@@ -17,6 +17,8 @@
   "author": "Jacob and Kyle",
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "electron": "~1.7.8"
   }
 }
