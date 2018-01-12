@@ -6,7 +6,7 @@
 }
 
 .note-text {
-    color: var(--colour-light);
+    color: black;
 }
 
 .note-date {
@@ -24,4 +24,3 @@
     width: 100vw;
     height: 40px;
 }
-
