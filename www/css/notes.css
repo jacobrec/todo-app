@@ -1,0 +1,27 @@
+/* The list of notes to display and their contents */
+.note-list {
+    display: block;
+    width: 300px;
+    height: 300px;
+}
+
+.note-text {
+    color: var(--colour-light);
+}
+
+.note-date {
+    color: grey;
+}
+
+/* The buttons that allow for note creation */
+.note-controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 40px;
+}
+
