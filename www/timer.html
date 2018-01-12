@@ -22,11 +22,14 @@
 
 <main>
     <div id="content">
-        <h1>Stopwatch</h1>
+        <h1>Timer</h1>
+        <div>
+            <input id="time-hours" type="text"/>:<input id="time-minutes" type="text"/>:<input id="time-seconds" type="text"/>
+        </div>
         <div id="middle">
-            <input style="width: 160px" class="btn" type="button" value="Start" id="start-restart">
-            <h2 id="clock">00:00:00.000</h2>
-            <input style="width: 160px" class="btn" type="button" value="Stop" id="stop-reset">
+            <input style="width: 160px" class="btn" type="button" value="Start" id="start">
+            <input style="width: 160px" class="btn" type="button" value="Stop" id="stop">
+            <input style="width: 160px" class="btn" type="button" value="Reset" id="reset">
         </div>
     </div>
 </main>
