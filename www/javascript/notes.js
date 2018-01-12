@@ -1,6 +1,20 @@
-window.addEventListener("load", function () {
+let notes = [];
+
+window.addEventListener("load", async function () {
     document.getElementById("create-note").onclick = createNote;
-    renderNotes();
+    try {
+        notes = await loadNotes();
+        renderNotes();
+    } catch (error) {
+        if (error instanceof ReferenceError) {
+            // The file could not be found.
+            // Ignore this error and assume no prior notes exist.
+            return;
+        }
+
+        alert("An error ocurred while loading your notes: " + error.message);
+        console.log(error);
+    }
 });
 
 class Note {
@@ -16,7 +30,7 @@ class Note {
     getElement() {
         let element = document.createElement("div");
         element.classList.add("note");
-        
+
         // Format the date and time.
         let date = this.date.toString().substring(0, 15);
         let hours = this.date.getHours();
@@ -32,14 +46,13 @@ class Note {
     }
 }
 
-let notes = [];
-
 function createNote() {
     let textElement = document.getElementById("note-text");
     let text = textElement.value;
     textElement.value = "";
     notes.push(new Note(text));
     renderNotes();
+    saveNotes();
 }
 
 function renderNotes() {
@@ -53,4 +66,30 @@ function renderNotes() {
         let element = note.getElement();
         noteList.appendChild(element);
     }
+}
+
+const fs = require('fs');
+const file = "./notes.json";
+
+function loadNotes() {
+    return new Promise((resolve, reject) => {
+        fs.readFile(file, "utf-8", (error, data) => {
+            if (error) {
+                reject(error);
+            }
+            let notes = JSON.parse(data);
+            notes = notes.map(note => new Note(note.text, new Date(note.date)));
+            resolve(notes);
+        });
+    });
+}
+
+function saveNotes() {
+    fs.writeFile(file, JSON.stringify(notes), error => {
+        if (error) {
+            alert("An error ocurred while saving your notes: " + error.message);
+            console.log(error);
+            return;
+        }
+    });
 }
