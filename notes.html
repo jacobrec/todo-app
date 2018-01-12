@@ -6,6 +6,7 @@
     <title>Todo</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="css/main.css" type="text/css" rel="stylesheet">
+    <link href="css/notes.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
@@ -20,9 +21,14 @@
         <a class="menu-item" href="clock.html">Clock</a>
     </nav>
     <main>
-        
+        <section id="note-list" class="note-list"></section>
+        <section class="note-controls">
+            <input type="text" placeholder="Type some text here..." />
+            <button>Create Note</button>
+        </section>
     </main>
     <script src="javascript/menu.js"></script>
+    <script src="javascript/notes.js"></script>
 </body>
 
 </html>
