@@ -1,12 +1,12 @@
 let notes = [];
 
 window.addEventListener("load", async function () {
-    document.getElementById("create-note").onclick = createNote;
+    document.getElementById("note-create").onclick = createNote;
     try {
         notes = await loadNotes();
         renderNotes();
     } catch (error) {
-        if (error instanceof ReferenceError) {
+        if (error.code === "ENOENT") {
             // The file could not be found.
             // Ignore this error and assume no prior notes exist.
             return;
@@ -25,10 +25,13 @@ class Note {
         } else {
             this.date = new Date();
         }
+        // Use milliseconds since January 1, 1970 as the id.
+        this.id = this.date.getTime();
     }
 
     getElement() {
         let element = document.createElement("div");
+        element.id = this.id;
         element.classList.add("note");
 
         // Format the date and time.
@@ -41,16 +44,60 @@ class Note {
         element.innerHTML = `
             <p class="note-text">${this.text}</p>
             <p class="note-date">${dateAndTime}</p>
+            <button class="note-edit btn">
+                <i class="material-icons">edit</i>
+            </button>
+            <button class="note-delete btn">
+                <i class="material-icons">delete</i>
+            </button>
         `;
+        element.querySelector(".note-edit").onclick = () => editNote(this.id);
+        element.querySelector(".note-delete").onclick = () => deleteNote(this.id);
         return element;
     }
 }
 
 function createNote() {
-    let textElement = document.getElementById("note-text");
-    let text = textElement.value;
-    textElement.value = "";
+    let textInputElement = document.getElementById("note-text-input");
+    let text = textInputElement.value;
+    textInputElement.value = "";
     notes.push(new Note(text));
+    renderNotes();
+    saveNotes();
+}
+
+function editNote(id) {
+    // Make the text editable.
+    let noteElement = document.getElementById(id);
+    let textElement = noteElement.querySelector(".note-text");
+    textElement.contentEditable = "true";
+    textElement.style.backgroundColor = "white";
+    // Replace the edit button with a save button.
+    let editButton = noteElement.querySelector(".note-edit");
+    editButton.innerHTML = `<i class="material-icons">save</i>`;
+    editButton.onclick = () => saveNote(id);
+}
+
+function saveNote(id) {
+    // Reset all the elements back to their original states.
+    let noteElement = document.getElementById(id);
+    let textElement = noteElement.querySelector(".note-text");
+    textElement.contentEditable = "false";
+    textElement.style.backgroundColor = "transparent";
+    let editButton = noteElement.querySelector(".note-edit");
+    editButton.innerHTML = `<i class="material-icons">edit</i>`;
+    editButton.onclick = () => editNote(id);
+    // Update the text in the notes array and save.
+    let newText = textElement.innerHTML;
+    let index = getNoteIndexById(id);
+    notes[index] = new Note(newText);
+    renderNotes();
+    saveNotes();
+}
+
+function deleteNote(id) {
+    let index = getNoteIndexById(id);
+    notes.splice(index, 1);
     renderNotes();
     saveNotes();
 }
@@ -68,6 +115,18 @@ function renderNotes() {
     }
 }
 
+function getNoteIndexById(id) {
+    // Find the note in the notes array.
+    for (let i = 0; i < notes.length; i++) {
+        let note = notes[i];
+        if (note.id === id) {
+            return i;
+        }
+    }
+    throw new Error("Note not found in array.");
+}
+
+// Loading and saving notes to the filesystem.
 const fs = require('fs');
 const file = "./notes.json";
 
@@ -76,6 +135,7 @@ function loadNotes() {
         fs.readFile(file, "utf-8", (error, data) => {
             if (error) {
                 reject(error);
+                return;
             }
             let notes = JSON.parse(data);
             notes = notes.map(note => new Note(note.text, new Date(note.date)));
