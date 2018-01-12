@@ -9,20 +9,29 @@
 </head>
 
 <body>
-<div id="notfooter">
-    <nav></nav>
+<nav></nav>
+<div id="content">
     <h1>Alarms</h1>
-    <canvas id="clock" height="300px" width="300px"></canvas>
-    <input type="button" value="Timer">
-    <input type="button" value="Stopwatch">
-</div>
-<div id="footer">
-    This is not a scam, trust me.
+    <div id="middle">
+        <a style="width: 160px" class="btn" id="bLeft">Timer</a>
+        <canvas id="clock" height="300px" width="300px"></canvas>
+        <a style="width: 160px" class="btn"  id="bRight" href="stopwatch.html">Stopwatch</a>
+    </div>
+    <div id="alarms">
+        <ul>
+            <li>
+                item 1
+            </li>
+            <li>
+                item 1
+            </li>
+        </ul>
+    </div>
+
 </div>
 
 
 <script>
-    // You can also require other files to run in this process
     require('./javascript/clock.js')
 </script>
 </body>

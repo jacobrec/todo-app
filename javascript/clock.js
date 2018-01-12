@@ -1,6 +1,7 @@
 let canvas;
 let ctx;
 
+
 window.onload = function (e) {
     initClock();
 };

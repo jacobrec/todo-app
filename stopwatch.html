@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Todo Clock</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="css/main.css" type="text/css" rel="stylesheet">
+    <link href="css/clock.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<nav></nav>
+<div id="content">
+    <h1>Stopwatch</h1>
+    <div id="middle">
+        <input style="width: 160px" class="btn" type="button" value="Start" id="start-restart">
+        <h2 id="clock">00:00:00.0</h2>
+        <input style="width: 160px" class="btn" type="button" value="Stop" id="stop-reset">
+    </div>
+</div>
+
+
+<script>
+    require('./javascript/stopwatch.js')
+</script>
+</body>
+</html>
