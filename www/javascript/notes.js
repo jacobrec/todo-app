@@ -1,6 +1,7 @@
-window.onload = function () {
+window.addEventListener("load", function () {
+    document.getElementById("create-note").onclick = createNote;
     renderNotes();
-}
+});
 
 class Note {
     constructor(text, date) {
