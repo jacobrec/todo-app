@@ -1,0 +1,23 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+#content{
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#clock{
+    width: 300px;
+    height: 300px;
+}
+#middle{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
