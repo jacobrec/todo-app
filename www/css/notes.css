@@ -1,13 +1,16 @@
-body {
-    overflow-y: auto;
-}
-
 /* The list of notes to display and their contents */
+
 .note-list {
     display: block;
     width: 300px;
-    height: 300px;
+    height: 90vh;
     margin: auto;
+    overflow-y: scroll;
+}
+
+.note-list::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
 }
 
 .note {
@@ -24,7 +27,8 @@ body {
     color: grey;
 }
 
-/* The buttons that allow for note creation */
+/* The inputs and buttons that allow for note creation */
+
 .note-controls {
     display: flex;
     flex-direction: row;
@@ -33,5 +37,17 @@ body {
     left: 0;
     bottom: 0;
     width: 100vw;
-    height: 40px;
+    height: 8vh;
+}
+
+.note-text-input {
+    width: 30vw;
+    color: var(--colour-light);
+    background-color: transparent;
+    border: transparent;
+    border-bottom: solid 1px var(--colour-light);
+}
+
+.note-text-input::placeholder {
+    color: var(--colour-light);
 }

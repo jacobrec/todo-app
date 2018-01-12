@@ -47,7 +47,7 @@ class Note {
 }
 
 function createNote() {
-    let textElement = document.getElementById("note-text");
+    let textElement = document.getElementById("note-text-input");
     let text = textElement.value;
     textElement.value = "";
     notes.push(new Note(text));
