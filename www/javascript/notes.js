@@ -31,6 +31,7 @@ class Note {
 
     getElement() {
         let element = document.createElement("div");
+        element.id = this.id;
         element.classList.add("note");
 
         // Format the date and time.
@@ -50,38 +51,55 @@ class Note {
                 <i class="material-icons">delete</i>
             </button>
         `;
+        element.querySelector(".note-edit").onclick = () => editNote(this.id);
         element.querySelector(".note-delete").onclick = () => deleteNote(this.id);
         return element;
     }
 }
 
 function createNote() {
-    let textElement = document.getElementById("note-text-input");
-    let text = textElement.value;
-    textElement.value = "";
+    let textInputElement = document.getElementById("note-text-input");
+    let text = textInputElement.value;
+    textInputElement.value = "";
     notes.push(new Note(text));
     renderNotes();
     saveNotes();
 }
 
+function editNote(id) {
+    // Make the text editable.
+    let noteElement = document.getElementById(id);
+    let textElement = noteElement.querySelector(".note-text");
+    textElement.contentEditable = "true";
+    textElement.style.backgroundColor = "white";
+    // Replace the edit button with a save button.
+    let editButton = noteElement.querySelector(".note-edit");
+    editButton.innerHTML = `<i class="material-icons">save</i>`;
+    editButton.onclick = () => saveNote(id);
+}
+
+function saveNote(id) {
+    // Reset all the elements back to their original states.
+    let noteElement = document.getElementById(id);
+    let textElement = noteElement.querySelector(".note-text");
+    textElement.contentEditable = "false";
+    textElement.style.backgroundColor = "transparent";
+    let editButton = noteElement.querySelector(".note-edit");
+    editButton.innerHTML = `<i class="material-icons">edit</i>`;
+    editButton.onclick = () => editNote(id);
+    // Update the text in the notes array and save.
+    let newText = textElement.innerHTML;
+    let index = getNoteIndexById(id);
+    notes[index] = new Note(newText);
+    renderNotes();
+    saveNotes();
+}
+
 function deleteNote(id) {
-    // Find the note in the notes array.
-    let index = -1;
-    for (let i = 0; i < notes.length; i++) {
-        let note = notes[i];
-        if (note.id === id) {
-            index = i;
-            break;
-        }
-    }
-    // Remove the note.
-    if (index > -1) {
-        notes.splice(index, 1);
-        renderNotes();
-        saveNotes();
-    } else {
-        console.log("Warning: note not found in array.");
-    }
+    let index = getNoteIndexById(id);
+    notes.splice(index, 1);
+    renderNotes();
+    saveNotes();
 }
 
 function renderNotes() {
@@ -97,6 +115,18 @@ function renderNotes() {
     }
 }
 
+function getNoteIndexById(id) {
+    // Find the note in the notes array.
+    for (let i = 0; i < notes.length; i++) {
+        let note = notes[i];
+        if (note.id === id) {
+            return i;
+        }
+    }
+    throw new Error("Note not found in array.");
+}
+
+// Loading and saving notes to the filesystem.
 const fs = require('fs');
 const file = "./notes.json";
 
