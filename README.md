@@ -1,7 +1,7 @@
 # TodoApp Help Manual
+Created by Kyle Hennig and Jacob Reckhard
 
 ## Running the app
-
 Double click on TodoApp.exe to start the program. A new window will pop up showing a main menu with 4 options.
 - Notes
 - Todo List
@@ -22,7 +22,7 @@ The edit icon (a picture of a pencil) allows you to change the text of your note
 <br>
 The delete icon (a garbage can) will delete your note. Only click this button if you are sure that you wish to erase it permanently.
 
-# Todo List
+## Todo List
 The todo list allows you to create a list of tasks (called todos) that you intend to complete in the near future. Similar to how notes function, you can create a todo by typing it into the input box on the bottom of the page and clicking "Create Todo" when you are done.
 <br>
 <br>
@@ -30,3 +30,13 @@ Todos have a checkbox which allows you to mark which todos have been completed. 
 <br>
 <br>
 A todo item also has an edit and delete button as well, which functions the same as in the notes section of the app.
+
+## Clock
+Our clock tells you the time down to the exact second, rendered as a analog clock with an hour, minute, and second hand. Two options are shown below the clock:
+- Timer
+- Stopwatch
+
+Clicking on "Timer" brings you to the timer page. Here, you can type in an amount of time. Hours go in the first box, minutes go in the next box, and seconds go in the last box. Press start, and the timer will begin counting down. An audible alert will be heard and a push notification will be send to your notification center when this timer reaches zero.
+<br>
+<br>
+Clicking on "Stopwatch" opens the stopwatch page. Here, you can click the start button to begin timing yourself. The timer will count up until you decide to click the stop button.
