@@ -18,12 +18,17 @@ window.addEventListener("load", async function () {
 });
 
 class Todo {
-    constructor(text, date) {
+    constructor(text, date, completed) {
         this.text = text;
-        if (date) {
+        if (date !== undefined) {
             this.date = date;
         } else {
             this.date = new Date();
+        }
+        if (completed !== undefined) {
+            this.completed = completed;
+        } else {
+            this.completed = false;
         }
         // Use milliseconds since January 1, 1970 as the id.
         this.id = this.date.getTime();
@@ -42,8 +47,10 @@ class Todo {
         let dateAndTime = date + " @ " + time;
 
         element.innerHTML = `
-            <p class="todo-text">${this.text}</p>
-            <p class="todo-date">${dateAndTime}</p>
+            <p class="todo-text">
+                <input class="todo-complete" type="checkbox" ${this.completed ? "checked": ""}/>
+                ${this.text}
+            </p>
             <button class="todo-edit btn">
                 <i class="material-icons">edit</i>
             </button>
@@ -51,6 +58,7 @@ class Todo {
                 <i class="material-icons">delete</i>
             </button>
         `;
+        element.querySelector(".todo-complete").onclick = () => completeTodo(this.id);
         element.querySelector(".todo-edit").onclick = () => editTodo(this.id);
         element.querySelector(".todo-delete").onclick = () => deleteTodo(this.id);
         return element;
@@ -76,6 +84,17 @@ function editTodo(id) {
     let editButton = todoElement.querySelector(".todo-edit");
     editButton.innerHTML = `<i class="material-icons">save</i>`;
     editButton.onclick = () => saveTodo(id);
+}
+
+function completeTodo(id) {
+    let index = getTodoIndexById(id);
+    let todo = todos[index];
+    if (todo.completed) {
+        todo.completed = false;
+    } else {
+        todo.completed = true;
+    }
+    saveTodos();
 }
 
 function saveTodo(id) {
@@ -138,7 +157,7 @@ function loadTodos() {
                 return;
             }
             let todos = JSON.parse(data);
-            todos = todos.map(todo => new Todo(todo.text, new Date(todo.date)));
+            todos = todos.map(todo => new Todo(todo.text, new Date(todo.date), todo.completed));
             resolve(todos);
         });
     });
