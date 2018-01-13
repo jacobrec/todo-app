@@ -1,45 +1,32 @@
-# electron-quick-start
+# TodoApp Help Manual
 
-**Clone and run for a quick way to see Electron in action.**
+## Running the app
 
-This is a minimal Electron application based on the [Quick Start Guide](http://electron.atom.io/docs/tutorial/quick-start) within the Electron documentation.
+Double click on TodoApp.exe to start the program. A new window will pop up showing a main menu with 4 options.
+- Notes
+- Todo List
+- Calendar
+- Clock
 
-**Use this app along with the [Electron API Demos](http://electron.atom.io/#get-started) app for API code examples to help you get started.**
+Click on the option that you wish to use. At any time, you will be able to change your decision using the menu on the left side hand of the page. By default, this menu is minimized for your viewing convenience. You can show the menu by clicking on the hamburger icon (&#9776;) located in the top left corner of the app.
 
-A basic Electron application needs just these files:
+## Notes
+On this page, you can create, edit, and delete any and every thought that comes to your mind.
+<br>
+<br>
+Begin by typing whatever you wish to record into the box that says "Type some text here..." and click on "Create Note" when you are done. A note will appear. This note will be saved to your hard drive, and will be available even if you close and reopen TodoApp.
+<br>
+<br>
+The edit icon (a picture of a pencil) allows you to change the text of your note at a later date if you so choose to. Clicking it will allow you to edit the text of the note, and will change the button to a save button. Once you are done, click the save button to finalize your changes.
+<br>
+<br>
+The delete icon (a garbage can) will delete your note. Only click this button if you are sure that you wish to erase it permanently.
 
-- `package.json` - Points to the app's main file and lists its details and dependencies.
-- `main.js` - Starts the app and creates a browser window to render HTML. This is the app's **main process**.
-- `index.html` - A web page to render. This is the app's **renderer process**.
-
-You can learn more about each of these components within the [Quick Start Guide](http://electron.atom.io/docs/tutorial/quick-start).
-
-## To Use
-
-To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
-
-```bash
-# Clone this repository
-git clone https://github.com/electron/electron-quick-start
-# Go into the repository
-cd electron-quick-start
-# Install dependencies
-npm install
-# Run the app
-npm start
-```
-
-Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
-
-## Resources for Learning Electron
-
-- [electron.atom.io/docs](http://electron.atom.io/docs) - all of Electron's documentation
-- [electron.atom.io/community/#boilerplates](http://electron.atom.io/community/#boilerplates) - sample starter apps created by the community
-- [electron/electron-quick-start](https://github.com/electron/electron-quick-start) - a very basic starter Electron app
-- [electron/simple-samples](https://github.com/electron/simple-samples) - small applications with ideas for taking them further
-- [electron/electron-api-demos](https://github.com/electron/electron-api-demos) - an Electron app that teaches you how to use Electron
-- [hokein/electron-sample-apps](https://github.com/hokein/electron-sample-apps) - small demo apps for the various Electron APIs
-
-## License
-
-[CC0 1.0 (Public Domain)](LICENSE.md)
+# Todo List
+The todo list allows you to create a list of tasks (called todos) that you intend to complete in the near future. Similar to how notes function, you can create a todo by typing it into the input box on the bottom of the page and clicking "Create Todo" when you are done.
+<br>
+<br>
+Todos have a checkbox which allows you to mark which todos have been completed. Whether or not this checkbox is checked will also be saved to your hard drive, in addition to the description of the todo and the date it was creation.
+<br>
+<br>
+A todo item also has an edit and delete button as well, which functions the same as in the notes section of the app.
