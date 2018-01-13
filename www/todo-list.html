@@ -6,6 +6,8 @@
     <title>Todo</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="css/main.css" type="text/css" rel="stylesheet">
+    <link href="css/todo-list.css" type="text/css" rel="stylesheet">
+    <link href="../node_modules/material-design-icons/iconfont/material-icons.css" rel="stylesheet">
 </head>
 
 <body>
@@ -21,11 +23,16 @@
         <a class="menu-item" href="clock.html">Clock</a>
     </nav>
     <main>
-
+        <section id="todo-list" class="todo-list"></section>
+        <section class="todo-controls">
+            <input id="todo-text-input" class="todo-text-input" type="text" placeholder="Type some text here..." />
+            <button id="todo-create" class="btn">Create Todo</button>
+        </section>
     </main>
 
     <script>
         require("./javascript/menu.js");
+        require("./javascript/todo-list.js");
     </script>
 </body>
 

@@ -1,0 +1,58 @@
+/* The list of todos to display and their contents */
+
+.todo-list {
+    display: block;
+    width: 100vw;
+    height: 90vh;
+    margin: auto;
+    overflow-y: scroll;
+}
+
+.todo-list::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+.todo {
+    width: 300px;
+    background-color: var(--colour-light);
+    padding: 10px;
+    margin: 10px auto;
+}
+
+.todo-text {
+    color: black;
+}
+
+.todo-date {
+    color: grey;
+}
+
+/* The inputs and buttons that allow for todo creation */
+
+.todo-controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 8vh;
+}
+
+.todo-text-input {
+    width: 30vw;
+    color: var(--colour-light);
+    background-color: transparent;
+    border: transparent;
+    border-bottom: solid 1px var(--colour-light);
+}
+
+.todo-text-input::placeholder {
+    color: var(--colour-light);
+}
+
+.todo-edit, .todo-delete {
+    padding: 1px 6px;
+}
