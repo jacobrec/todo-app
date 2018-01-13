@@ -43,7 +43,6 @@ class Note {
 
         element.innerHTML = `
             <p class="note-text">${this.text}</p>
-            <p class="note-date">${dateAndTime}</p>
             <button class="note-edit btn">
                 <i class="material-icons">edit</i>
             </button>

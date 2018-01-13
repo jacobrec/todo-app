@@ -51,6 +51,7 @@ class Todo {
                 <input class="todo-complete" type="checkbox" ${this.completed ? "checked": ""}/>
                 ${this.text}
             </p>
+            <p class="todo-date">${dateAndTime}</p>
             <button class="todo-edit btn">
                 <i class="material-icons">edit</i>
             </button>
