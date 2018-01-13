@@ -98,6 +98,10 @@ a {
     border-bottom: 1px solid var(--colour-light);
 }
 
+a.menu-item:hover {
+    background-color: #98cede;
+}
+
 .menu-selected {
     color: var(--colour-accent);
 }
