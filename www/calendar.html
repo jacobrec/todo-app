@@ -27,7 +27,7 @@
     <div id="mini-clndr">
         <script id="mini-clndr-template" type="text/template">
 
-            <div class="controls">
+            <div class="controls" style="display: flex;">
                 <div class="clndr-previous-button">&lsaquo;</div><div class="month"><%= month %></div><div class="clndr-next-button">&rsaquo;</div>
             </div>
 
@@ -45,8 +45,8 @@
                     </div>
                     <div class="events-list">
                         <% _.each(eventsThisMonth, function(event) { %>
-                        <div class="event">
-                            <a href="<%= event.url %>"><%= moment(event.date).format('MMMM Do') %>: <%= event.title %></a>
+                        <div onclick="deleteEvent(<%= event.id %>)" class="event">
+                            <a><%= moment(event.date).format('MMMM Do') %>: <%= event.title %></a>
                         </div>
                         <% }); %>
                     </div>
@@ -54,6 +54,38 @@
             </div>
 
         </script>
+    </div>
+    <div style="width:100%; display: flex; align-items:center; justify-content: center;">
+        <button class="btn-accent" onclick='$("#modal_aquireinfo").addClass("showModal");$("#modal_aquireinfo").removeClass("hideModal");'>+</button>
+    </div>
+    <div id="modal_aquireinfo" class="hideModal">
+        <div class="modal-content">
+            <p style="padding-left: 100px">Add event info</p>
+            <div class="hor">
+                <p>
+                    Event Name:
+                </p>
+                <input id="modal_name"/>
+            </div>
+            <div class="hor">
+                <p>
+                    Event Location:
+                </p>
+                <input id="modal_loc"/>
+            </div>
+            <div class="hor">
+                <p>
+                    Event Date(YYYY-MM-DD):
+                </p>
+                <input id="modal_date"/>
+            </div>
+            <div style="height:100px"></div>
+            <div class="hor">
+                <button onclick="killEvent()" class="btn-accent">Cancel</button>
+                <button onclick="newEvent()" class="btn">Submit</button>
+            </div>
+
+        </div>
     </div>
 </main>
 <script>
@@ -63,10 +95,8 @@
     require("./libs/moment.min.js");
     window._ = require("./libs/underscore-min.js");
     require("./libs/clndr.min.js");
-    require("./javascript/calender.js");
-
-
 </script>
+<script src="javascript/calender.js"></script>
 </body>
 
 </html>
