@@ -1,38 +1,8 @@
 var cal;
-
-
-var currentMonth = moment().format('YYYY-MM');
-var nextMonth = moment().add('month', 1).format('YYYY-MM');
-
-var events = [{
-        date: currentMonth + '-' + '10',
-        title: 'Persian Kitten Auction',
-        location: 'Center for Beautiful Cats',
-        id: 0
-    },
-    {
-        date: currentMonth + '-' + '19',
-        title: 'Cat Frisbee',
-        location: 'Jefferson Park',
-        id: 1
-    },
-    {
-        date: currentMonth + '-' + '23',
-        title: 'Kitten Demonstration',
-        location: 'Center for Beautiful Cats',
-        id: 2
-    },
-    {
-        date: nextMonth + '-' + '07',
-        title: 'Small Cat Photo Session',
-        location: 'Center for Cat Photography',
-        id: 3
-    }
-];
-
-
+let events = [];
 $(document).ready(function() {
     addCal();
+    getEvents();
 });
 
 function addCal() {
@@ -82,9 +52,7 @@ function deleteEvent(id) {
         });
 
     }
-
-
-
+    saveEvents();
 }
 
 
@@ -97,9 +65,9 @@ function newEvent() { // TODO: escape string
     };
     events.push(e);
     events.sort(function(a, b) {
-        if(a.date < b.date){
+        if (a.date < b.date) {
             return -1;
-        }else if (a.date > b.date){
+        } else if (a.date > b.date) {
             return 1;
         }
         return 0;
@@ -107,6 +75,7 @@ function newEvent() { // TODO: escape string
     cal.setEvents(events);
 
     killEvent();
+    saveEvents()
 }
 
 function killEvent() {
@@ -115,4 +84,50 @@ function killEvent() {
     $("#modal_date").val("");
     $("#modal_aquireinfo").removeClass("showModal");
     $("#modal_aquireinfo").addClass("hideModal");
+}
+
+
+// Loading and saving notes to the filesystem.
+
+async function getEvents() {
+    try {
+        events = await loadEvents();
+        cal.setEvents(events);
+    } catch (error) {
+        if (error.code === "ENOENT") {
+            // The file could not be found.
+            // Ignore this error and assume no prior notes exist.
+            return;
+        }
+
+        alert("An error ocurred while loading your notes: " + error.message);
+        console.log(error);
+    }
+};
+
+
+const fs = require('fs');
+const file = "./events.json";
+
+function loadEvents() {
+    return new Promise((resolve, reject) => {
+        fs.readFile(file, "utf-8", (error, data) => {
+            if (error) {
+                reject(error);
+                return;
+            }
+            let events = JSON.parse(data);
+            resolve(events);
+        });
+    });
+}
+
+function saveEvents() {
+    fs.writeFile(file, JSON.stringify(events), error => {
+        if (error) {
+            alert("An error ocurred while saving your notes: " + error.message);
+            console.log(error);
+            return;
+        }
+    });
 }
