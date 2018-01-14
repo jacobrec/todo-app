@@ -87,30 +87,23 @@ function deleteEvent(id) {
 
 }
 
-function sortEvents() {
-    var swapped;
-    do {
-        swapped = false;
-        for (var i = 0; i < events.length - 1; i++) {
-            if (events[i].date > events[i].date) {
-                var temp = events[i];
-                events[i] = events[i + 1];
-                events[i + 1] = temp;
-                swapped = true;
-            }
-        }
-    } while (swapped);
-}
 
-function newEvent() {
+function newEvent() { // TODO: escape string
     let e = {
         date: $("#modal_date").val(),
         title: $("#modal_name").val(),
         location: $("#modal_loc").val(),
-        id: 4
+        id: Date.now()
     };
     events.push(e);
-    sortEvents();
+    events.sort(function(a, b) {
+        if(a.date < b.date){
+            return -1;
+        }else if (a.date > b.date){
+            return 1;
+        }
+        return 0;
+    });
     cal.setEvents(events);
 
     killEvent();
