@@ -45,8 +45,8 @@
                     </div>
                     <div class="events-list">
                         <% _.each(eventsThisMonth, function(event) { %>
-                        <div onclick="deleteEvent(<%= event.id %>)" class="event">
-                            <a><%= moment(event.date).format('MMMM Do') %>: <%= event.title %></a>
+                        <div class="event" style="display: flex; flex-flow: row nowrap; align-items:center; justify-content:space-between;">
+                            <a><%= moment(event.date).format('MMMM Do') %>: <%= event.title %></a> <button id="but-<%= event.id %>"onclick="deleteEvent(<%= event.id %>)" class="btn">Remove</button>
                         </div>
                         <% }); %>
                     </div>

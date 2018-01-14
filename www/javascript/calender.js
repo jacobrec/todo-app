@@ -56,12 +56,34 @@ function addCal() {
 }
 
 function deleteEvent(id) {
-    for (let index in events) {
-        if (events[index].id == id) {
-            events.pop(index);
-        }
+    let but = document.getElementById("but-" + id);
+    if (but.data == undefined) {
+        but.data = false;
     }
-    cal.setEvents(events);
+
+    if (but.data) {
+        for (let index in events) {
+            if (events[index].id == id) {
+                events.splice(index, 1);
+            }
+        }
+        cal.setEvents(events);
+    } else {
+        but.style.backgroundColor = "red";
+        but.innerHTML = "Confirm";
+        but.data = true;
+
+        window.addEventListener("click", function(e) {
+            if (e.srcElement != but) {
+                but.style.backgroundColor = "#0099CC";
+                but.innerHTML = "Remove";
+                but.data = false;
+            }
+        });
+
+    }
+
+
 
 }
 
