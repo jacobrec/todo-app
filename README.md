@@ -41,7 +41,7 @@ Clicking on "Timer" brings you to the timer page. Here, you can type in an amoun
 <br>
 Clicking on "Stopwatch" opens the stopwatch page. Here, you can click the start button to begin timing yourself. The timer will count up until you decide to click the stop button.
 
-# Calendar
+## Calendar
 The Calendar section allows you to add events to a traditional calendar view to ensure you never miss a date. Events are the main feature here. Days on the calendar on with an event are marked by being a darker tone of gray.
 
 Upon clicking on one of these dates it will open up the schedule view. Here you can see everything going on this month, to add additional functionality and avoid repeating features, this schedule view actually displays them in the order of most recently added last so the oldest event shows at the top to ensure everything is fresh in your mind. As well you have the option to remove events with ease with one tap by just clicking the event.
